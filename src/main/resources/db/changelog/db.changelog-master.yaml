@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-1.yaml
+  - changeSet:
+      id: 1
+      author: yana
+      changes:
+        - createTable:
+            tableName: actions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: action_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: action_value
+                  type: INTEGER
+              - column:
+                  name: is_active
+                  type: boolean
+                  constraints:
+                    nullable: false
+        - createIndex:
+            columns:
+              - column:
+                  name: action_id
+            indexName: idx_action_id
+            schemaName: public
+            tableName: actions
